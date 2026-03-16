@@ -28,6 +28,7 @@ app.post('/task', async (req, res) => {
     const taskSchema = Joi.object({
         title: Joi.string().min(3).required(),
         description: Joi.string().min(10).required(),
+        task_type: Joi.string().valid('video', 'audio', 'image').required()
     });
 
     const { error } = taskSchema.validate(req.body);
@@ -37,6 +38,7 @@ app.post('/task', async (req, res) => {
     const taskBody = {
         title: req.body.title,
         description: req.body.description,
+        task_type: req.body.task_type,
         created_at: Date.now()
     }
 
