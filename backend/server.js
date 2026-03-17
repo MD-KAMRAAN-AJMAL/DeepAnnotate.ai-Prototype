@@ -3,12 +3,14 @@ const express = require('express');
 const multer = require('multer');
 const { db } = require('./lib/firebase.js');
 const { supabase } = require('./lib/supabase.js');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 const upload = multer({ storage: multer.memoryStorage() });
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/tasks', async (req, res) => {
