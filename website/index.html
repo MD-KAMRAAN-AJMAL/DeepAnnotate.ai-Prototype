@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DeepAnnotate - Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="showPage('create-task')">
+            <span class="icon"><i class="fas fa-plus"></i></span> Create Task
+          </button>
+          <button class="tab-btn" onclick="showPage('view-submissions')">
+            <span class="icon"><i class="fas fa-list"></i></span> View
+            Submissions
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <!-- Create Task -->
+        <section id="create-task" class="page">
+          <form id="task-form">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Enter task title"
+                required
+                minlength="3"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                placeholder="Enter task description"
+                required
+                minlength="10"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Task Type</label>
+              <div class="slider-toggle">
+                <input type="radio" name="task_type" value="video" id="video" checked />
+                <label for="video"><i class="fas fa-video"></i> Video</label>
+
+                <input type="radio" name="task_type" value="image" id="image" />
+                <label for="image"><i class="fas fa-image"></i> Image</label>
+
+                <input type="radio" name="task_type" value="audio" id="audio" />
+                <label for="audio"><i class="fas fa-microphone"></i> Audio</label>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Create Task</button>
+          </form>
+        </section>
+
+        <!-- View Submissions -->
+        <section id="view-submissions" class="page" style="display: none">
+          <div class="table-container">
+            <table id="submissions-table">
+              <thead>
+                <tr>
+                  <th>Task</th>
+                  <th>File link</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody id="submissions-list">
+                <tr class="empty-state">
+                  <td colspan="3">No submissions yet :(</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
