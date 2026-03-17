@@ -16,7 +16,13 @@ class _TaskListState extends State<TaskList> {
   @override
   void initState() {
     super.initState();
-    _tasksFuture = ApiService.fetchTasks();
+    _refreshTasks();
+  }
+
+  void _refreshTasks() {
+    setState(() {
+      _tasksFuture = ApiService.fetchTasks();
+    });
   }
 
   @override
@@ -24,6 +30,12 @@ class _TaskListState extends State<TaskList> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Task List"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: _refreshTasks,
+          ),
+        ],
       ),
       body: FutureBuilder<List<Task>>(
         future: _tasksFuture,
