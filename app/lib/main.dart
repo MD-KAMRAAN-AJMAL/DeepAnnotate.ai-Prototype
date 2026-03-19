@@ -1,4 +1,4 @@
-import 'package:app/screens/task_list_page.dart';
+import 'package:app/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,12 +14,11 @@ class MyApp extends StatelessWidget {
       title: 'DeepAnnotate.ai',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: .fromSeed(
+        colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 19, 127, 236),
         ),
       ),
-
-      home: const TaskList(),
+      home: const MainNavigation(),
     );
   }
 }

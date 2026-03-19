@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import '../models/task.dart';
 import 'package:path/path.dart' as path;
+import '../models/task.dart';
+import '../models/submission.dart';
 
 class ApiService {
   static final _dio = Dio();
@@ -20,6 +21,34 @@ class ApiService {
       }
     } catch (e) {
       print('Error fetching tasks: $e');
+      return [];
+    }
+  }
+
+  static Future<bool> createTask(Map<String, dynamic> taskData) async {
+    try {
+      final response = await _dio.post(
+        '$baseUrl/task',
+        data: taskData,
+      );
+      return response.statusCode == 201;
+    } catch (e) {
+      print('Error creating task: $e');
+      return false;
+    }
+  }
+
+  static Future<List<Submission>> fetchSubmissions() async {
+    try {
+      final response = await _dio.get('$baseUrl/submissions');
+      if (response.statusCode == 200) {
+        List<dynamic> data = response.data;
+        return data.map((json) => Submission.fromJson(json)).toList();
+      } else {
+        throw Exception('Failed to load submissions');
+      }
+    } catch (e) {
+      print('Error fetching submissions: $e');
       return [];
     }
   }

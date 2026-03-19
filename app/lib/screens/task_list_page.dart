@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:app/models/task.dart';
 import 'package:app/screens/task_details_page.dart';
 import 'package:app/services/api_service.dart';
-import 'package:flutter/material.dart';
 
 class TaskList extends StatefulWidget {
   const TaskList({super.key});
@@ -29,12 +29,12 @@ class _TaskListState extends State<TaskList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Task List"),
+        title: const Text(
+          "DeepAnnotate",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _refreshTasks,
-          ),
+          IconButton(icon: const Icon(Icons.refresh), onPressed: _refreshTasks),
         ],
       ),
       body: FutureBuilder<List<Task>>(
@@ -53,18 +53,19 @@ class _TaskListState extends State<TaskList> {
             itemCount: tasks.length,
             itemBuilder: (context, index) {
               final task = tasks[index];
+              print(task.taskDifficulty);
               return ListTile(
                 leading: Icon(_getIcon(task.taskType)),
                 title: Text(task.title),
-                subtitle: Text(task.taskType.toUpperCase()),
+                subtitle: Text(
+                  "${task.taskType.toUpperCase()} | ${task.taskDifficulty}",
+                ),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => TaskDetailsPage(
-                        task: task,
-                      ),
+                      builder: (context) => TaskDetailsPage(task: task),
                     ),
                   );
                 },

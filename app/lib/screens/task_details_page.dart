@@ -173,7 +173,7 @@ class _TaskDetailPageState extends State<TaskDetailsPage> {
                 Icon(getTaskIcon(), size: 28),
                 const SizedBox(width: 10),
                 Text(
-                  widget.task.taskType.toUpperCase(),
+                  "${widget.task.taskType.toUpperCase()} | ${widget.task.taskDifficulty}",
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -235,7 +235,9 @@ class _TaskDetailPageState extends State<TaskDetailsPage> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: (isRecording || _isPickerActive) ? null : uploadMedia,
+                onPressed: (isRecording || _isPickerActive)
+                    ? null
+                    : uploadMedia,
                 icon: const Icon(Icons.upload),
                 label: const Text("Upload from Gallery"),
               ),
