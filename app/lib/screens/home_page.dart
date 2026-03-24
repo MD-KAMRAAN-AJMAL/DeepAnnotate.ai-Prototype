@@ -1,4 +1,4 @@
-import 'package:app/screens/admin_panel_page.dart';
+import 'package:app/screens/task_creation.dart';
 import 'package:app/screens/submissions_page.dart';
 import 'package:app/screens/task_list_page.dart';
 import 'package:flutter/material.dart';

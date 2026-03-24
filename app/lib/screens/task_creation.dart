@@ -165,7 +165,7 @@ class _AdminPanelPageState extends State<AdminPanelPage> {
         TextFormField(
           controller: controller,
           maxLines: maxLines,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.black),
           validator: validator,
           decoration: InputDecoration(
             hintText: hint,
